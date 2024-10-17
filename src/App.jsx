@@ -1,17 +1,22 @@
-import styles from "./App.module.css";
 import { useState, useEffect } from "react";
 
-function App() {
-  const [counter, setCounter] = useState(0);
-  const onClick = () => setCounter((prev) => prev + 1);
-  console.log("i run all the time");
+function Hello() {
   useEffect(() => {
-    console.log("Call the API..");
+    console.log("hi :)");
+    return () => console.log("bye :(");
   }, []);
+
+  return <h1>Hello</h1>;
+}
+
+function App() {
+  const [showing, setShowing] = useState(false);
+  const onClick = () => setShowing((prev) => !prev);
+
   return (
     <div>
-      <h1 className={styles.title}>{counter}</h1>
-      <button onClick={onClick}>click me</button>
+      {showing && <Hello />}
+      <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
     </div>
   );
 }
